@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammed Irfan | Portfolio</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #7aa541;
+            --bg-card: rgba(18, 24, 38, 0.7);
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.4);
+            --accent: #06b6d4;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border: rgba(255, 255, 255, 0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Classes */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+
+        /* Ambient Glow Background */
+        .bg-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, rgba(0,0,0,0) 70%);
+            top: -100px;
+            left: -100px;
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, rgba(0,0,0,0) 70%);
+            bottom: -150px;
+            right: -150px;
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1100px;
+            padding: 12px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 120px 0 60px 0;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero-wrapper {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            min-height: calc(100vh - 120px);
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 30px;
+            color: #818cf8;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .hero-avatar-container {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-avatar {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border);
+            box-shadow: 0 0 40px var(--primary-glow);
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 20px var(--primary-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background: #4f46e5;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Grid Cards */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            padding: 28px;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-50px);
+            border-color: rgba(89, 90, 126, 0.4);
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Contact Details Grid */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+        }
+
+        .info-item i {
+            font-size: 1.3rem;
+            color: var(--primary);
+            width: 24px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero-wrapper {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 50px;
+            }
+            .hero-title {
+                font-size: 2.4rem;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none; /* Can be expanded into a mobile menu */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Glowing Background Elements -->
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- Floating Navigation Bar -->
+    <nav class="glass-card">
+        <div class="logo">MI.</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Works</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="container">
+        <section id="hero">
+            <div class="hero-wrapper">
+                <div>
+                    <span class="hero-tag">Welcome to my Portfolio</span>
+                    <h1 class="hero-title">Muhammed Irfan</h1>
+                    <p class="hero-subtitle">Innovator & Digital Creator crafting dynamic web experiences and modern digital solutions.</p>
+                    <div class="btn-group">
+                        <a href="#contact" class="btn btn-primary">
+                            Get In Touch <i class="fa-solid => fa-arrow-right"></i>
+                        </a>
+                        <a href="#portfolio" class="btn btn-outline">Explore Works</a>
+                    </div>
+                </div>
+                <div class="hero-avatar-container">
+                    <!-- High Quality AI-generated Tech Persona Image -->
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Muhammed Irfan" class="hero-avatar">
+                </div>
+            </div>
+        </section>
+
+        <!-- About / Highlights Section -->
+        <section id="about">
+            <h2 class="section-title">Core Capabilities</h2>
+            <div class="grid-cards">
+                <div class="glass-card card">
+                    <i class="fa-solid fa-code card-icon"></i>
+                    <h3>Web Development</h3>
+                    <p>Building highly responsive, optimized modern websites standard compliant to UI/UX practices.</p>
+                </div>
+                <div class="glass-card card">
+                    <i class="fa-solid fa-wand-magic-sparkles card-icon"></i>
+                    <h3>Digital Creativity</h3>
+                    <p>Leveraging cutting-edge AI visual tools and technologies for content design and media creation.</p>
+                </div>
+                <div class="glass-card card">
+                    <i class="fa-solid fa-bolt card-icon"></i>
+                    <h3>Problem Solving</h3>
+                    <p>Translating complex problems into elegant, accessible, scalable code solutions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Showcase -->
+        <section id="portfolio">
+            <h2 class="section-title">Featured Works</h2>
+            <div class="grid-cards">
+                <div class="glass-card card">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" style="width:100%; border-radius:10px; margin-bottom:15px;" alt="AI Abstract Concept">
+                    <h3>AI Visual Engine</h3>
+                    <p>Generative abstract artwork concept UI built with fluid CSS filters and web canvas dynamic rendering.</p>
+                </div>
+                <div class="glass-card card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" style="width:100%; border-radius:10px; margin-bottom:15px;" alt="Dashboard Analytics">
+                    <h3>Analytics Dashboard</h3>
+                    <p>High-performance data visualizer interface engineered with modern glassmorphism styling.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 class="section-title">Contact Information</h2>
+            <div class="contact-wrapper">
+                <div class="info-list">
+                    <div class="glass-card info-item">
+                        <i class="fa-solid fa-user"></i>
+                        <div>
+                            <strong>Name</strong>
+                            <p>Muhammed Irfan</p>
+                        </div>
+                    </div>
+                    <div class="glass-card info-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <strong>Phone</strong>
+                            <p>+91 8590133631</p>
+                        </div>
+                    </div>
+                    <div class="glass-card info-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <strong>Location</strong>
+                            <p>Deverkovil, Kozhikode, Kerala, India</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Quick Message Interface -->
+                <div class="glass-card card">
+                    <form id="contactForm">
+                        <div style="margin-bottom:16px;">
+                            <label style="display:block; margin-bottom:6px; font-size:0.9rem;">Your Message</label>
+                            <textarea id="msgInput" rows="4" style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:8px; padding:12px; color:#fff; font-family:inherit;" placeholder="Say hello..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
+                            Send Direct Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; <span id="year"></span> Muhammed Irfan. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript logic -->
+    <script>
+        // Set dynamic year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Contact form interaction
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const msg = document.getElementById('msgInput').value;
+            if(msg.trim()) {
+                alert('Thank you, Muhammed Irfan will receive your message shorty!');
+                document.getElementById('msgInput').value = '';
+            } else {
+                alert('Please enter a message before submitting.');
+            }
+        });
+
+        // Interactive mouse parallax glow effect
+        document.addEventListener('mousemove', (e) => {
+            const glow1 = document.querySelector('.bg-glow');
+            glow1.style.top = `${e.clientY - 200}px`;
+            glow1.style.left = `${e.clientX - 200}px`;
+        });
+    </script>
+</body>
+</html>
